@@ -112,3 +112,63 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+function articleCreator(articleObj){ 
+
+  const articleDiv = document.createElement('div');
+  articleDiv.classList.add('article');
+
+  const header = document.createElement('h2');
+  header.textContent = articleObj.title;
+  articleDiv.appendChild(header);
+
+  const paraDate = document.createElement('p');
+  paraDate.classList.add('date');
+  paraDate.textContent = articleObj.date;
+  articleDiv.appendChild(paraDate);
+
+  const para1 = document.createElement('p');
+  para1.textContent = articleObj.firstParagraph;
+  articleDiv.appendChild(para1);
+
+  const para2 = document.createElement('p');
+  para2.textContent = articleObj.secondParagraph;
+  articleDiv.appendChild(para2);
+
+  const para3 = document.createElement('p');
+  para3.textContent = articleObj.thirdParagraph;
+  articleDiv.appendChild(para3);
+
+  const spanElement = document.createElement('span');
+  spanElement.textContent = 'Expand';
+  spanElement.classList.add('expandButton');
+  spanElement.addEventListener('click', () => {
+    articleDiv.classList.toggle('article-open'); // or "this." instead of "article."
+  });
+  articleDiv.appendChild(spanElement);
+
+  return articleDiv;
+
+};
+
+// add new article
+
+const myArticle = {
+  title: 'The day I was born',
+  date: 'Sep 30th, 1982',
+  firstParagraph: 'Test1',
+  secondParagraph: 'Test2',
+  thirdParagraph: 'Test3',
+}
+
+data.push(myArticle);
+
+const articlesDiv = document.querySelector('.articles');
+
+data.forEach((arrayItem) => {
+  const newArticle = articleCreator(arrayItem);
+
+  articlesDiv.appendChild(newArticle);
+});
+
+
